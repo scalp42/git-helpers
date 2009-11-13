@@ -1,0 +1,2 @@
+#!/bin/sh
+git status | grep features/ | grep -v deleted | cut -d ":" -f 2 | xargs cucumber
