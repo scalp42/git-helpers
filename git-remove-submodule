@@ -1,0 +1,10 @@
+#!/bin/sh
+# git-remove-submodule <path-to-submodule>
+
+if [ $# -ne 1 ]; then
+	echo "Usage: ${0} path-to-submodule"
+	exit 127
+fi
+git rm --cached $1
+rm -rf $1
+
