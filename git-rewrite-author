@@ -1,0 +1,17 @@
+#!/bin/sh
+export OLD_NAME=$1
+export NEW_NAME=`git config user.name`
+export NEW_EMAIL=`git config user.email`
+echo "Rewriting all commits by ${OLD_NAME} to ${NEW_NAME} <${NEW_EMAIL}>"
+
+git filter-branch --commit-filter '
+  if [ "$GIT_COMMITTER_NAME" = "<Old Name>" ];
+  then
+          GIT_COMMITTER_NAME="<New Name>";
+          GIT_AUTHOR_NAME="<New Name>";
+          GIT_COMMITTER_EMAIL="<New Email>";
+          GIT_AUTHOR_EMAIL="<New Email>";
+          git commit-tree "$@";
+  else
+          git commit-tree "$@";
+  fi' HEAD
