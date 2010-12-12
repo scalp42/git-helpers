@@ -5,3 +5,4 @@ Git Helpers
 * git-remove-branch
 * git-cuke
 * git-spec
+* git-rewrite-author
